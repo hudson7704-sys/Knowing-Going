@@ -1,3 +1,1 @@
-# Knowing & Going v1.0
-
-20-tool static site. Upload index.html, styles.css and app.js to the existing Cloudflare project. No paid APIs or external libraries are required.
+Knowing & Going SEO v2 — 20 dedicated calculator pages, sitemap, robots.txt, shared CSS/JS. Upload the entire extracted folder contents to the existing GitHub project. No paid APIs required.
