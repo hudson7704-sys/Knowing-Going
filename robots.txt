@@ -1,3 +1,6 @@
 User-agent: *
 Allow: /
-Sitemap: https://knowing-going-site.hudson7704.workers.dev/sitemap.xml
+Disallow: /admin
+Disallow: /*.json$
+
+Sitemap: https://hudson7704-sys.github.io/Knowing-Going/sitemap.xml
