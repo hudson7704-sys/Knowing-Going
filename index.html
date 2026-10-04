@@ -1,1 +1,206 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="google-site-verification" content="r576_mODoavLVgBTGANHRiDm4IEjrBvrWy9nyT3tJgc"><meta name="description" content="Knowing & Going free calculators, estimators, generators and business tools."><title>Knowing & Going — Calculators & Business Tools</title><link rel="stylesheet" href="styles.css"></head><body><header><div class="wrap"><h1>Knowing & Going</h1><p>When You Know You Go — Leave the guess work to us.</p><input id="search" type="search" placeholder="Search tools..."></div></header><main class="wrap"><div id="app"></div></main><footer><div class="wrap">© <span id="year"></span> Knowing & Going</div></footer><script src="app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free online calculators for money, finance, conversions, and everyday math. 50+ tools to help you calculate discounts, loans, taxes, conversions, and more instantly.">
+  <meta name="keywords" content="calculator, free calculator, online calculator, loan calculator, mortgage calculator, discount calculator, tax calculator, math tools, financial calculators">
+  <meta name="google-site-verification" content="r576_mODoavLVgBTGANHRiDm[... ]">
+  <meta property="og:title" content="Knowing & Going - Free Online Calculators">
+  <meta property="og:description" content="50+ free calculators for everyday math, money, finance, and conversions.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hudson7704-sys.github.io/Knowing-Going/">
+  <title>Free Online Calculators | Knowing & Going</title>
+  <link rel="canonical" href="https://hudson7704-sys.github.io/Knowing-Going/">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-xxxxxxxxxxxxxxxx"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <h1 class="logo">📊 Knowing & Going</h1>
+        <p class="tagline">Free Online Calculators for Everyday Math</p>
+      </div>
+      <nav class="nav">
+        <a href="#home" class="nav-link active" data-filter="">All Tools</a>
+        <a href="#money" class="nav-link" data-filter="Money">Money</a>
+        <a href="#conversion" class="nav-link" data-filter="Conversion">Conversion</a>
+        <a href="#business" class="nav-link" data-filter="Business">Business</a>
+        <a href="#everyday" class="nav-link" data-filter="Everyday">Everyday</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h2>Solve Everyday Math Instantly</h2>
+      <p>50+ free calculators to help you with money, finance, conversions, and more. No sign-up required.</p>
+      <div class="search-box">
+        <input type="text" id="search" placeholder="Search calculators... (loan, tax, discount, temperature...)" autocomplete="off">
+        <span class="search-icon">🔍</span>
+      </div>
+    </div>
+  </section>
+
+  <main class="main">
+    <div class="container">
+      <section class="featured-section">
+        <h2>⭐ Most Popular</h2>
+        <div class="featured-grid" id="featured"></div>
+      </section>
+
+      <section class="calculators-section">
+        <h2>All Tools by Category</h2>
+        <div id="grid" class="calculator-grid"></div>
+        <div id="noResults" class="no-results" hidden>
+          <p>No calculators found. Try a different search.</p>
+        </div>
+      </section>
+
+      <div class="ad-container ad-space-1" style="margin: 40px 0; text-align: center; min-height: 250px; background: #f0f0f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999;">
+        <small>Advertisement</small>
+      </div>
+
+      <section class="benefits-section">
+        <h2>Why Use Our Calculators?</h2>
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <span class="benefit-icon">✅</span>
+            <h3>100% Free</h3>
+            <p>No subscriptions, no sign-ups, no hidden fees. All calculators are completely free to use.</p>
+          </div>
+          <div class="benefit-card">
+            <span class="benefit-icon">⚡</span>
+            <h3>Instant Results</h3>
+            <p>Get accurate calculations instantly. No ads cluttering your results.</p>
+          </div>
+          <div class="benefit-card">
+            <span class="benefit-icon">📱</span>
+            <h3>Mobile Friendly</h3>
+            <p>Use on any device. Optimized for desktop, tablet, and mobile phones.</p>
+          </div>
+          <div class="benefit-card">
+            <span class="benefit-icon">🔒</span>
+            <h3>Private & Secure</h3>
+            <p>All calculations happen in your browser. Your data never leaves your device.</p>
+          </div>
+          <div class="benefit-card">
+            <span class="benefit-icon">📊</span>
+            <h3>50+ Tools</h3>
+            <p>Money, finance, conversions, dates, and more. Everything you need for everyday math.</p>
+          </div>
+          <div class="benefit-card">
+            <span class="benefit-icon">🎯</span>
+            <h3>Accurate</h3>
+            <p>Precise calculations you can trust for personal and professional use.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="ad-container ad-space-2" style="margin: 40px 0; text-align: center; min-height: 250px; background: #f0f0f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999;">
+        <small>Advertisement</small>
+      </div>
+
+      <section class="categories-info-section">
+        <h2>Our Calculator Categories</h2>
+        
+        <div class="category-info">
+          <h3>💰 Money & Finance</h3>
+          <p>Calculate loans, mortgages, compound interest, paycheck deductions, and more. Perfect for personal finance planning and investment decisions.</p>
+          <ul class="category-examples">
+            <li>Loan & Mortgage Calculators</li>
+            <li>Compound Interest Calculator</li>
+            <li>Paycheck Calculator</li>
+            <li>Budget & Savings Tools</li>
+          </ul>
+        </div>
+
+        <div class="category-info">
+          <h3>🛍️ Shopping & Business</h3>
+          <p>Calculate discounts, taxes, markups, tips, and percentages. Essential tools for shoppers, business owners, and entrepreneurs.</p>
+          <ul class="category-examples">
+            <li>Discount Calculator</li>
+            <li>Tax Calculator</li>
+            <li>Tip Calculator</li>
+            <li>Markup & Pricing Tools</li>
+          </ul>
+        </div>
+
+        <div class="category-info">
+          <h3>📏 Conversions & Units</h3>
+          <p>Convert temperatures, distances, weights, and measurements. Ideal for cooking, travel, fitness, and international work.</p>
+          <ul class="category-examples">
+            <li>Temperature Converter</li>
+            <li>Distance & Length</li>
+            <li>Weight & Mass</li>
+            <li>Advanced Conversions</li>
+          </ul>
+        </div>
+
+        <div class="category-info">
+          <h3>📅 Dates & Time</h3>
+          <p>Calculate age, days between dates, and business days. Useful for planning, anniversaries, and project timelines.</p>
+          <ul class="category-examples">
+            <li>Age Calculator</li>
+            <li>Days Between Dates</li>
+            <li>Business Days Counter</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="modal" class="modal" hidden>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="title"></h2>
+        <span class="modal-category" id="cat"></span>
+        <button class="modal-close" id="close">&times;</button>
+      </div>
+      <form id="form" class="calculator-form"></form>
+      <div id="result" class="result" hidden></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>About</h4>
+          <p>Knowing & Going provides free online calculators for everyday math, finance, conversions, and business calculations. No registration required.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Popular Tools</h4>
+          <ul>
+            <li><a href="#" onclick="searchByKeyword('loan')">Loan Calculator</a></li>
+            <li><a href="#" onclick="searchByKeyword('mortgage')">Mortgage Calculator</a></li>
+            <li><a href="#" onclick="searchByKeyword('tax')">Tax Calculator</a></li>
+            <li><a href="#" onclick="searchByKeyword('discount')">Discount Calculator</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Categories</h4>
+          <ul>
+            <li><a href="#" onclick="filterByCategory('Money')">Money & Finance</a></li>
+            <li><a href="#" onclick="filterByCategory('Business')">Business Tools</a></li>
+            <li><a href="#" onclick="filterByCategory('Everyday')">Everyday Tools</a></li>
+            <li><a href="#" onclick="filterByCategory('Conversion')">Conversions</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p>Questions or suggestions? We'd love to hear from you.</p>
+          <p><a href="mailto:support@knowingandgoing.com">support@knowingandgoing.com</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> Knowing & Going. All rights reserved. | <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
