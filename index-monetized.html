@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowing & Going - Free Financial Calculators & Money Tools</title>
+    <meta name="description" content="Free financial calculators: mortgage, loan, compound interest, retirement, investment, debt payoff, and 30+ money management tools. Get instant calculations.">
+    <meta name="keywords" content="financial calculators, mortgage calculator, loan calculator, investment calculator, retirement calculator, debt payoff">
+    <meta name="google-site-verification" content="r576_mODoavLVgBTGANHRiDm">
+    
+    <!-- Schema.org Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Knowing & Going",
+      "description": "Free financial and money calculators",
+      "url": "https://knowingandgoing.com",
+      "applicationCategory": "FinanceApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0"
+      }
+    }
+    </script>
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_ID" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .ad-container { 
+            margin: 15px 0; 
+            padding: 10px; 
+            background: #f9f9f9; 
+            border-radius: 4px;
+            text-align: center;
+            min-height: 90px;
+        }
+        .affiliate-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .affiliate-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .lead-form {
+            background: #e8f4f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #0066cc;
+        }
+        .lead-form input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .lead-form button {
+            background: #0066cc;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .revenue-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        @media (max-width: 600px) {
+            .revenue-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>💰 Knowing & Going</h1>
+        <p style="margin: 5px 0;">Free Financial Calculators & Money Management Tools</p>
+    </header>
+
+    <!-- Top Ad Banner -->
+    <div class="ad-container">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+             data-ad-slot="YOUR_AD_SLOT_1"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+    </div>
+
+    <main style="max-width: 1200px; margin: 0 auto; padding: 0 16px;">
+        <!-- Lead Capture Form -->
+        <div class="lead-form">
+            <h3 style="margin-top: 0;">📧 Get Free Money Tips Weekly</h3>
+            <p>Subscribe for financial insights and calculator updates.</p>
+            <input type="email" id="leadEmail" placeholder="your@email.com" required>
+            <button onclick="captureEmail()">Get Weekly Tips</button>
+        </div>
+
+        <!-- Search Bar -->
+        <div style="margin: 20px 0;">
+            <input type="search" id="search" placeholder="Search tools (mortgage, loan, interest...)" 
+                   style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 6px; font-size: 16px;">
+        </div>
+
+        <!-- Featured High-Income Tools -->
+        <section style="margin: 30px 0;">
+            <h2>🔥 Featured Financial Tools (High Revenue Generators)</h2>
+            <div class="revenue-grid">
+                <div class="affiliate-box" onclick="openTool(T.find(t=>t[0]==='mortgage'))">
+                    <h3 style="margin: 0;">🏠 Mortgage Calculator</h3>
+                    <p style="margin: 5px 0; font-size: 0.9em;">See rates from top lenders →</p>
+                </div>
+                <div class="affiliate-box" onclick="openTool(T.find(t=>t[0]==='loan'))">
+                    <h3 style="margin: 0;">💳 Loan Calculator</h3>
+                    <p style="margin: 5px 0; font-size: 0.9em;">Compare loan offers →</p>
+                </div>
+                <div class="affiliate-box" onclick="openTool(T.find(t=>t[0]==='interest'))">
+                    <h3 style="margin: 0;">📈 Investment Returns</h3>
+                    <p style="margin: 5px 0; font-size: 0.9em;">Grow your wealth →</p>
+                </div>
+                <div class="affiliate-box" onclick="openTool(T.find(t=>t[0]==='credit-payoff'))">
+                    <h3 style="margin: 0;">💰 Debt Payoff Plan</h3>
+                    <p style="margin: 5px 0; font-size: 0.9em;">Get debt-free faster →</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Section (Sidebar on desktop) -->
+        <div class="ad-container">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+                 data-ad-slot="YOUR_AD_SLOT_2"
+                 data-ad-format="vertical"
+                 data-full-width-responsive="true"></ins>
+        </div>
+
+        <!-- Tool Grid -->
+        <h2>All Financial Tools</h2>
+        <div id="grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px;"></div>
+
+        <!-- In-Content Ad -->
+        <div class="ad-container" style="margin: 30px 0;">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+                 data-ad-slot="YOUR_AD_SLOT_3"
+                 data-ad-format="horizontal"
+                 data-full-width-responsive="true"></ins>
+        </div>
+
+        <!-- Affiliate Recommendations -->
+        <section style="margin: 30px 0; background: #f0f8ff; padding: 20px; border-radius: 8px;">
+            <h2>💡 Recommended Financial Partners</h2>
+            <p>We partner with trusted financial institutions to help you make better money decisions.</p>
+            <div class="revenue-grid">
+                <a href="https://affiliate.bankofamerica.com" target="_blank" rel="noopener" style="text-decoration: none;">
+                    <div style="background: white; padding: 15px; border-radius: 8px; border: 2px solid #007AFF;">
+                        <strong>💳 Credit Cards</strong><br>
+                        Compare rates & rewards
+                    </div>
+                </a>
+                <a href="https://affiliate.fidelity.com" target="_blank" rel="noopener" style="text-decoration: none;">
+                    <div style="background: white; padding: 15px; border-radius: 8px; border: 2px solid #009600;">
+                        <strong>📊 Investment Apps</strong><br>
+                        Start investing today
+                    </div>
+                </a>
+                <a href="https://affiliate.loansdepot.com" target="_blank" rel="noopener" style="text-decoration: none;">
+                    <div style="background: white; padding: 15px; border-radius: 8px; border: 2px solid #FF3B30;">
+                        <strong>🏦 Personal Loans</strong><br>
+                        Get instant quotes
+                    </div>
+                </a>
+                <a href="https://affiliate.creditkarma.com" target="_blank" rel="noopener" style="text-decoration: none;">
+                    <div style="background: white; padding: 15px; border-radius: 8px; border: 2px solid #FFB81C;">
+                        <strong>📱 Credit Monitoring</strong><br>
+                        Protect your score
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Bottom Ad -->
+        <div class="ad-container">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+                 data-ad-slot="YOUR_AD_SLOT_4"
+                 data-ad-format="horizontal"
+                 data-full-width-responsive="true"></ins>
+        </div>
+    </main>
+
+    <!-- Modal for Tool Details -->
+    <div id="modal" hidden style="
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center;
+        z-index: 1000;
+    ">
+        <div style="
+            background: white; border-radius: 12px; padding: 20px;
+            max-width: 500px; width: 90%; max-height: 80vh; overflow: auto;
+        ">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2 id="title" style="margin: 0;"></h2>
+                <button id="close" onclick="closeModal()" style="
+                    border: none; background: #f0f0f0; width: 40px; height: 40px;
+                    border-radius: 50%; cursor: pointer; font-size: 20px;
+                ">✕</button>
+            </div>
+            <p id="cat" style="color: #666; margin: 10px 0;"></p>
+            
+            <!-- Ad in Modal -->
+            <div class="ad-container">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+                     data-ad-slot="YOUR_AD_SLOT_5"
+                     data-ad-format="horizontal"
+                     data-full-width-responsive="true"></ins>
+            </div>
+
+            <form id="form"></form>
+            <div id="result" hidden style="background: #e8f8e8; padding: 15px; border-radius: 8px; margin-top: 15px;"></div>
+        </div>
+    </div>
+
+    <footer style="background: #17202a; color: white; padding: 20px; text-align: center; margin-top: 40px;">
+        <p>&copy; 2024 Knowing & Going. Free financial tools for everyone.</p>
+        <p><a href="#" style="color: #87ceeb;">Privacy Policy</a> | <a href="#" style="color: #87ceeb;">Affiliate Disclosure</a></p>
+    </footer>
+
+    <script src="app-monetized.js"></script>
+    <script>
+        // Email capture for lead generation
+        function captureEmail() {
+            const email = document.getElementById('leadEmail').value;
+            if (email) {
+                // Send to backend/email service
+                fetch('/api/capture-lead', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                }).catch(err => console.log('Lead captured locally:', email));
+                
+                alert('✅ Check your email for free money tips!');
+                document.getElementById('leadEmail').value = '';
+            }
+        }
+
+        // Reload ads after tool use
+        function refreshAds() {
+            if (window.adsbygoogle) {
+                try {
+                    window.adsbygoogle.push({});
+                } catch(e) {}
+            }
+        }
+
+        // Close modal and refresh ads
+        function closeModal() {
+            document.getElementById('modal').hidden = true;
+            refreshAds();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            refreshAds();
+        });
+    </script>
+</body>
+</html>
