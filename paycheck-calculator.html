@@ -1,1 +1,104 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Paycheck Calculator — Free Online Calculator | Knowing & Going</title><meta name="description" content="Use the free paycheck calculator from Knowing & Going. Estimate take-home pay from gross pay and a deduction percentage. Fast, simple and free."><link rel="canonical" href="https://knowing-going-site.hudson7704.workers.dev/paycheck-calculator.html"><link rel="stylesheet" href="styles.css"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Paycheck Calculator", "url": "https://knowing-going-site.hudson7704.workers.dev/paycheck-calculator.html", "description": "Use the free paycheck calculator from Knowing & Going. Estimate take-home pay from gross pay and a deduction percentage. Fast, simple and free.", "breadcrumb": {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Knowing & Going", "item": "https://knowing-going-site.hudson7704.workers.dev/"}, {"@type": "ListItem", "position": 2, "name": "Paycheck Calculator"}]}}</script></head><body><header><div class="wrap nav"><a class="brand" href="index.html">Knowing <span>& Going</span></a><nav><a href="index.html#tools">Tools</a><a href="index.html#money">Money</a><a href="index.html#business">Business</a></nav></div></header><main class="page"><div class="crumbs"><a href="index.html">Knowing & Going</a> / Paycheck Calculator</div><p class="eyebrow">MONEY</p><h1>Paycheck Calculator</h1><p>Estimate take-home pay from gross pay and a deduction percentage.</p><section class="calculator"><form id="calculator-form"></form><div id="result" class="result" hidden></div><p class="note">Informational estimate only. Verify important financial decisions with a qualified professional.</p></section><section class="article"><h2>How much is my paycheck after deductions?</h2><p>The calculator subtracts the percentage you enter for deductions from gross pay.</p><h2>About this calculator</h2><p>This free tool is designed to give you a quick estimate without requiring an account or paid software. Enter your numbers, calculate, and use the result as a starting point for your decision.</p><h2>Common question</h2><h3>Is this a tax calculator?</h3><p>No. It is a simple estimate and does not calculate actual federal, state or payroll taxes.</p></section><section class="section"><p class="eyebrow">RELATED TOOLS</p><div class="related"><a href="compound-interest-calculator.html">Compound Interest Calculator</a><a href="ratio-calculator.html">Ratio Calculator</a><a href="business-days-calculator.html">Business Days Calculator</a></div></section></main><footer><div class="wrap"><b>Knowing & Going</b><p>When You Know You Go — Leave the guess work to us.</p><small>© <span id="year"></span> Knowing & Going</small></div></footer><script>const TOOL={"slug": "paycheck", "name": "Paycheck Calculator", "category": "Money", "desc": "Estimate take-home pay from gross pay and a deduction percentage.", "fields": [["g", "Gross pay", "number"], ["d", "Deductions %", "number"]], "fn": "`Estimated take-home: <b>${M(v.g*(1-v.d/100))}</b><p class=\"note\">Simple estimate, not a tax calculation.</p>`"};</script><script src="tool.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Plan how much to save each month with the free Savings Calculator from Knowing & Going.">
+  <title>Savings Calculator | Knowing & Going</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <h1 class="logo">📊 Knowing & Going</h1>
+        <p class="tagline">Free Online Calculators for Everyday Math</p>
+      </div>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="salary-calculator.html" class="nav-link">Salary</a>
+        <a href="savings-calculator.html" class="nav-link active">Savings</a>
+        <a href="loan-calculator.html" class="nav-link">Loan</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <section class="page-hero">
+        <h1>Savings Calculator</h1>
+        <p>Determine how much you need to save per month to reach your financial goal.</p>
+      </section>
+
+      <div class="page-layout">
+        <section class="calculator-panel">
+          <form id="savingsForm" class="calculator-form">
+            <label class="field">
+              <span>Goal amount</span>
+              <input id="goal" type="number" step="0.01" placeholder="10000" required>
+            </label>
+            <label class="field">
+              <span>Annual rate (%)</span>
+              <input id="rate" type="number" step="0.01" placeholder="4" required>
+            </label>
+            <label class="field">
+              <span>Years</span>
+              <input id="years" type="number" step="1" placeholder="5" required>
+            </label>
+            <button type="submit" class="calc-button">Calculate</button>
+          </form>
+          <div id="savingsResult" class="result" hidden></div>
+        </section>
+
+        <aside class="info-panel">
+          <h3>Save with a plan</h3>
+          <p>Use this calculator to set realistic monthly savings goals and build financial discipline over time.</p>
+          <div class="ad-box">Advertisement</div>
+        </aside>
+      </div>
+
+      <section class="related-tools">
+        <h2>Related calculators</h2>
+        <div class="related-grid">
+          <a href="salary-calculator.html">Salary Calculator</a>
+          <a href="paycheck-calculator.html">Paycheck Calculator</a>
+          <a href="loan-calculator.html">Loan Calculator</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <p>&copy; <span id="year"></span> Knowing & Going</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('savingsForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const goal = Number(document.getElementById('goal').value);
+      const rate = Number(document.getElementById('rate').value);
+      const years = Number(document.getElementById('years').value);
+      const result = document.getElementById('savingsResult');
+
+      if (!goal || !rate || !years) {
+        result.hidden = false;
+        result.innerHTML = 'Please enter valid values for all fields.';
+        return;
+      }
+
+      const monthlyRate = (rate / 100) / 12;
+      const months = years * 12;
+      const monthlySavings = monthlyRate === 0 ? goal / months : goal * monthlyRate / (Math.pow(1 + monthlyRate, months) - 1);
+
+      result.hidden = false;
+      result.innerHTML = `
+        <strong>Monthly savings needed:</strong> $${monthlySavings.toLocaleString(undefined, { maximumFractionDigits: 2 })}<br>
+        <strong>Target goal:</strong> $${goal.toLocaleString(undefined, { maximumFractionDigits: 2 })}
+      `;
+    });
+  </script>
+</body>
+</html>

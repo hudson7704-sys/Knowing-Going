@@ -1,1 +1,98 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Discount Calculator — Free Online Calculator | Knowing & Going</title><meta name="description" content="Use the free discount calculator from Knowing & Going. Find sale price and savings. Fast, simple and free."><link rel="canonical" href="https://knowing-going-site.hudson7704.workers.dev/discount-calculator.html"><link rel="stylesheet" href="styles.css"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Discount Calculator", "url": "https://knowing-going-site.hudson7704.workers.dev/discount-calculator.html", "description": "Use the free discount calculator from Knowing & Going. Find sale price and savings. Fast, simple and free.", "breadcrumb": {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Knowing & Going", "item": "https://knowing-going-site.hudson7704.workers.dev/"}, {"@type": "ListItem", "position": 2, "name": "Discount Calculator"}]}}</script></head><body><header><div class="wrap nav"><a class="brand" href="index.html">Knowing <span>& Going</span></a><nav><a href="index.html#tools">Tools</a><a href="index.html#money">Money</a><a href="index.html#business">Business</a></nav></div></header><main class="page"><div class="crumbs"><a href="index.html">Knowing & Going</a> / Discount Calculator</div><p class="eyebrow">SAVINGS</p><h1>Discount Calculator</h1><p>Find sale price and savings.</p><section class="calculator"><form id="calculator-form"></form><div id="result" class="result" hidden></div><p class="note">Informational estimate only. Verify important financial decisions with a qualified professional.</p></section><section class="article"><h2>How much is 20% off $75?</h2><p>Multiply the original price by the discount percentage, then subtract the savings from the original price.</p><h2>About this calculator</h2><p>This free tool is designed to give you a quick estimate without requiring an account or paid software. Enter your numbers, calculate, and use the result as a starting point for your decision.</p><h2>Common question</h2><h3>Does the discount calculator include sales tax?</h3><p>No. It calculates the discount itself; tax can be calculated separately.</p></section><section class="section"><p class="eyebrow">RELATED TOOLS</p><div class="related"><a href="tip-calculator.html">Tip Calculator</a><a href="percentage-calculator.html">Percentage Calculator</a><a href="temperature-calculator.html">Temperature Converter</a></div></section></main><footer><div class="wrap"><b>Knowing & Going</b><p>When You Know You Go — Leave the guess work to us.</p><small>© <span id="year"></span> Knowing & Going</small></div></footer><script>const TOOL={"slug": "discount", "name": "Discount Calculator", "category": "Savings", "desc": "Find sale price and savings.", "fields": [["p", "Original price", "number"], ["d", "Discount %", "number"]], "fn": "Sale price: ${M(v.p*(1-v.d/100))}<br>Savings: ${M(v.p*v.d/100)}"};</script><script src="tool.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Estimate sales tax and final price with the free Tax Calculator from Knowing & Going.">
+  <title>Tax Calculator | Knowing & Going</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <h1 class="logo">📊 Knowing & Going</h1>
+        <p class="tagline">Free Online Calculators for Everyday Math</p>
+      </div>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="loan-calculator.html" class="nav-link">Loan</a>
+        <a href="mortgage-calculator.html" class="nav-link">Mortgage</a>
+        <a href="tax-calculator.html" class="nav-link active">Tax</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <section class="page-hero">
+        <h1>Tax Calculator</h1>
+        <p>Estimate sales tax and determine the final price before you buy.</p>
+      </section>
+
+      <div class="page-layout">
+        <section class="calculator-panel">
+          <form id="taxForm" class="calculator-form">
+            <label class="field">
+              <span>Price</span>
+              <input id="price" type="number" step="0.01" placeholder="100" required>
+            </label>
+            <label class="field">
+              <span>Tax rate (%)</span>
+              <input id="rate" type="number" step="0.01" placeholder="7.5" required>
+            </label>
+            <button type="submit" class="calc-button">Calculate</button>
+          </form>
+          <div id="taxResult" class="result" hidden></div>
+        </section>
+
+        <aside class="info-panel">
+          <h3>Helpful for shoppers</h3>
+          <p>Use this tool to estimate what a purchase will cost before checking out or comparing prices.</p>
+          <div class="ad-box">Advertisement</div>
+        </aside>
+      </div>
+
+      <section class="related-tools">
+        <h2>Related calculators</h2>
+        <div class="related-grid">
+          <a href="discount-calculator.html">Discount Calculator</a>
+          <a href="salary-calculator.html">Salary Calculator</a>
+          <a href="paycheck-calculator.html">Paycheck Calculator</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <p>&copy; <span id="year"></span> Knowing & Going</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('taxForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const price = Number(document.getElementById('price').value);
+      const rate = Number(document.getElementById('rate').value);
+      const result = document.getElementById('taxResult');
+
+      if (!price || !rate) {
+        result.hidden = false;
+        result.innerHTML = 'Please enter valid values for all fields.';
+        return;
+      }
+
+      const taxAmount = price * (rate / 100);
+      const total = price + taxAmount;
+
+      result.hidden = false;
+      result.innerHTML = `
+        <strong>Tax amount:</strong> $${taxAmount.toLocaleString(undefined, { maximumFractionDigits: 2 })}<br>
+        <strong>Total price:</strong> $${total.toLocaleString(undefined, { maximumFractionDigits: 2 })}
+      `;
+    });
+  </script>
+</body>
+</html>

@@ -1,1 +1,106 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sales Tax Calculator — Free Online Calculator | Knowing & Going</title><meta name="description" content="Use the free sales tax calculator from Knowing & Going. Calculate tax and final price. Fast, simple and free."><link rel="canonical" href="https://knowing-going-site.hudson7704.workers.dev/tax-calculator.html"><link rel="stylesheet" href="styles.css"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Sales Tax Calculator", "url": "https://knowing-going-site.hudson7704.workers.dev/tax-calculator.html", "description": "Use the free sales tax calculator from Knowing & Going. Calculate tax and final price. Fast, simple and free.", "breadcrumb": {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Knowing & Going", "item": "https://knowing-going-site.hudson7704.workers.dev/"}, {"@type": "ListItem", "position": 2, "name": "Sales Tax Calculator"}]}}</script></head><body><header><div class="wrap nav"><a class="brand" href="index.html">Knowing <span>& Going</span></a><nav><a href="index.html#tools">Tools</a><a href="index.html#money">Money</a><a href="index.html#business">Business</a></nav></div></header><main class="page"><div class="crumbs"><a href="index.html">Knowing & Going</a> / Sales Tax Calculator</div><p class="eyebrow">MONEY</p><h1>Sales Tax Calculator</h1><p>Calculate tax and final price.</p><section class="calculator"><form id="calculator-form"></form><div id="result" class="result" hidden></div><p class="note">Informational estimate only. Verify important financial decisions with a qualified professional.</p></section><section class="article"><h2>How much is sales tax on $100?</h2><p>Multiply the price by the tax rate, then add the tax to the price.</p><h2>About this calculator</h2><p>This free tool is designed to give you a quick estimate without requiring an account or paid software. Enter your numbers, calculate, and use the result as a starting point for your decision.</p><h2>Common question</h2><h3>Does this know my local tax rate?</h3><p>No. Enter the tax rate that applies to your purchase.</p></section><section class="section"><p class="eyebrow">RELATED TOOLS</p><div class="related"><a href="markup-calculator.html">Markup Calculator</a><a href="age-calculator.html">Age Calculator</a><a href="days-calculator.html">Days Between Dates</a></div></section></main><footer><div class="wrap"><b>Knowing & Going</b><p>When You Know You Go — Leave the guess work to us.</p><small>© <span id="year"></span> Knowing & Going</small></div></footer><script>const TOOL={"slug": "tax", "name": "Sales Tax Calculator", "category": "Money", "desc": "Calculate tax and final price.", "fields": [["p", "Price", "number"], ["t", "Tax %", "number"]], "fn": "Tax: ${M(v.p*v.t/100)}<br>Total: ${M(v.p*(1+v.t/100))}"};</script><script src="tool.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calculate a mortgage payment, total cost, and interest with the free mortgage calculator from Knowing & Going.">
+  <title>Mortgage Calculator | Knowing & Going</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <h1 class="logo">📊 Knowing & Going</h1>
+        <p class="tagline">Free Online Calculators for Everyday Math</p>
+      </div>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="loan-calculator.html" class="nav-link">Loan</a>
+        <a href="mortgage-calculator.html" class="nav-link active">Mortgage</a>
+        <a href="tax-calculator.html" class="nav-link">Tax</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <section class="page-hero">
+        <h1>Mortgage Calculator</h1>
+        <p>Estimate your monthly mortgage payment and total loan cost before you buy.</p>
+      </section>
+
+      <div class="page-layout">
+        <section class="calculator-panel">
+          <form id="mortgageForm" class="calculator-form">
+            <label class="field">
+              <span>Home price</span>
+              <input id="principal" type="number" step="0.01" placeholder="350000" required>
+            </label>
+            <label class="field">
+              <span>Annual interest rate (%)</span>
+              <input id="rate" type="number" step="0.01" placeholder="6.25" required>
+            </label>
+            <label class="field">
+              <span>Loan term (years)</span>
+              <input id="years" type="number" step="1" placeholder="30" required>
+            </label>
+            <button type="submit" class="calc-button">Calculate</button>
+          </form>
+          <div id="mortgageResult" class="result" hidden></div>
+        </section>
+
+        <aside class="info-panel">
+          <h3>Budget planning</h3>
+          <p>Mortgage payments affect home affordability. Estimate your monthly obligation before committing to a loan.</p>
+          <div class="ad-box">Advertisement</div>
+        </aside>
+      </div>
+
+      <section class="related-tools">
+        <h2>Related calculators</h2>
+        <div class="related-grid">
+          <a href="loan-calculator.html">Loan Calculator</a>
+          <a href="savings-calculator.html">Savings Calculator</a>
+          <a href="salary-calculator.html">Salary Calculator</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <p>&copy; <span id="year"></span> Knowing & Going</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('mortgageForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const principal = Number(document.getElementById('principal').value);
+      const annualRate = Number(document.getElementById('rate').value);
+      const years = Number(document.getElementById('years').value);
+      const result = document.getElementById('mortgageResult');
+
+      if (!principal || !annualRate || !years) {
+        result.hidden = false;
+        result.innerHTML = 'Please enter valid values for all fields.';
+        return;
+      }
+
+      const monthlyRate = annualRate / 1200;
+      const months = years * 12;
+      const payment = monthlyRate === 0 ? principal / months : principal * monthlyRate / (1 - Math.pow(1 + monthlyRate, -months));
+      const totalPaid = payment * months;
+
+      result.hidden = false;
+      result.innerHTML = `
+        <strong>Monthly payment:</strong> $${payment.toLocaleString(undefined, { maximumFractionDigits: 2 })}<br>
+        <strong>Total paid:</strong> $${totalPaid.toLocaleString(undefined, { maximumFractionDigits: 2 })}<br>
+        <strong>Total interest:</strong> $${(totalPaid - principal).toLocaleString(undefined, { maximumFractionDigits: 2 })}
+      `;
+    });
+  </script>
+</body>
+</html>
