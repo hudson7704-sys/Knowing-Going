@@ -1,1 +1,140 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="google-site-verification" content="r576_mODoavLVgBTGANHRiDm4IEjrBvrWy9nyT3tJgc"><meta name="description" content="Lead Generator — Knowing & Going"><title>Lead Generator | Knowing & Going</title><link rel="stylesheet" href="styles.css"></head><body><header><div class="wrap"><h1>Knowing & Going</h1><p>Lead Generator</p></div></header><main class="wrap"><div class="panel"><a class="btn" href="index.html">← All tools</a><div id="tool"></div></div></main><footer><div class="wrap">© <span id="year"></span> Knowing & Going</div></footer><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Free Money Advice | Knowing & Going</title>
+  <meta name="description" content="Get free money-saving tips, calculator results, and personalized financial offers from Knowing & Going." />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+    .wrap {
+      max-width: 720px;
+      margin: 60px auto;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%);
+      color: white;
+      padding: 36px 28px;
+      text-align: center;
+    }
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: 2.2rem;
+    }
+    .content {
+      padding: 28px;
+    }
+    .card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    label {
+      display: block;
+      font-weight: 700;
+      margin: 12px 0 8px;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    button {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+      border: none;
+      font-weight: 700;
+      margin-top: 18px;
+      cursor: pointer;
+    }
+    .success {
+      display: none;
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 18px;
+      font-weight: 700;
+    }
+    .mini {
+      font-size: 0.9rem;
+      color: #475569;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <h1>Free Money Advice</h1>
+      <p>Get personalized tips for mortgages, loans, debt payoff, and savings.</p>
+    </div>
+    <div class="content">
+      <div class="card">
+        <h2 style="margin-top:0;">Get Your Free Financial Report</h2>
+        <p>Enter your details to unlock a personalized money-saving report and the best available finance offers.</p>
+        <form id="leadForm">
+          <label for="name">Full name</label>
+          <input id="name" type="text" placeholder="Your name" required />
+
+          <label for="email">Email address</label>
+          <input id="email" type="email" placeholder="you@example.com" required />
+
+          <label for="goal">Main goal</label>
+          <select id="goal">
+            <option value="mortgage">Lower my mortgage payment</option>
+            <option value="refinance">Refinance my home</option>
+            <option value="debt">Pay off debt faster</option>
+            <option value="retirement">Build retirement savings</option>
+            <option value="investment">Start investing</option>
+            <option value="loan">Get a personal loan</option>
+          </select>
+
+          <button type="submit">Get My Free Report</button>
+        </form>
+        <div id="success" class="success">Success! Your free financial report is on the way.</div>
+        <div class="mini">We respect your privacy. No spam — only useful money tips and partner offers.</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('leadForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const goal = document.getElementById('goal').value;
+
+      const lead = { name, email, goal, createdAt: new Date().toISOString() };
+      const existing = JSON.parse(localStorage.getItem('knowingLeads') || '[]');
+      existing.push(lead);
+      localStorage.setItem('knowingLeads', JSON.stringify(existing));
+
+      // Optional: send to backend endpoint if configured
+      fetch('/api/capture-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(lead)
+      }).catch(() => console.log('Lead saved locally:', lead));
+
+      document.getElementById('success').style.display = 'block';
+      document.getElementById('leadForm').reset();
+    });
+  </script>
+</body>
+</html>
