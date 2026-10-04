@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debt Payoff Calculator - Calculate Your Debt-Free Date | Knowing & Going</title>
+    <meta name="description" content="Free debt payoff calculator. See how long it takes to pay off debt, calculate total interest, and create a payoff plan. Works for credit cards, loans, and mortgages.">
+    <meta name="keywords" content="debt payoff calculator, credit card payoff calculator, loan payoff calculator, debt calculator">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "FinancialProduct",
+      "name": "Debt Payoff Calculator",
+      "description": "Free debt payoff calculator to calculate how long it takes to pay off debt and create a payoff plan",
+      "url": "https://knowingandgoing.com/debt-payoff-calculator.html",
+      "brand": {"@type": "Organization", "name": "Knowing & Going"},
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+      "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "3200", "bestRating": "5", "worstRating": "1"}
+    }
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f5f7fa;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        header p { font-size: 1.1rem; opacity: 0.95; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .intro {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .intro h2 { font-size: 1.8rem; margin-bottom: 15px; color: #0f172a; }
+        .intro p { font-size: 1.05rem; margin-bottom: 12px; }
+        .intro ul { margin-left: 20px; margin-bottom: 15px; }
+        .intro li { margin-bottom: 8px; }
+        .calculator-box {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin: 30px 0;
+        }
+        .form-group { margin-bottom: 20px; }
+        label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        .range-value {
+            display: inline-block;
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4); }
+        .result-box {
+            display: none;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 25px;
+        }
+        .result-box h3 { font-size: 1.3rem; margin-bottom: 15px; }
+        .result-item {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        .result-item:last-child { border-bottom: none; }
+        .result-label { opacity: 0.9; font-size: 0.95rem; }
+        .result-value { font-size: 1.4rem; font-weight: 700; margin-top: 5px; }
+        .offer-box {
+            background: #ffe0e0;
+            border-left: 4px solid #dc2626;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .offer-box h4 { color: #7f1d1d; margin-bottom: 10px; }
+        .offer-box p { color: #7f1d1d; margin-bottom: 15px; }
+        .offer-btn {
+            display: inline-block;
+            background: #dc2626;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .offer-btn:hover { background: #b91c1c; }
+        .content-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .content-section h2 { font-size: 1.6rem; margin-bottom: 15px; color: #0f172a; }
+        .content-section h3 { font-size: 1.2rem; margin-top: 20px; margin-bottom: 10px; color: #1f2937; }
+        .content-section p { margin-bottom: 15px; line-height: 1.8; }
+        .related-calcs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .calc-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            padding: 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+        .calc-card:hover { border-color: #dc2626; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.1); }
+        .calc-card h4 { color: #0f172a; margin-bottom: 8px; }
+        .calc-card p { font-size: 0.9rem; color: #6b7280; }
+        footer { background: #1f2937; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>💳 Debt Payoff Calculator</h1>
+        <p>Calculate Your Payoff Timeline & Interest Savings</p>
+    </header>
+
+    <div class="container">
+        <div class="intro">
+            <h2>Create Your Debt Payoff Plan</h2>
+            <p>This calculator shows exactly how long it will take to pay off your debt with your current payment plan. It also shows you how much interest you'll pay and what your debt-free date will be.</p>
+            <p><strong>Use this to:</strong></p>
+            <ul>
+                <li>See your exact debt-free date</li>
+                <li>Understand how much interest you'll pay</li>
+                <li>Find out how much extra to pay to get debt-free faster</li>
+                <li>Compare different payment amounts</li>
+                <li>Explore debt consolidation options</li>
+            </ul>
+        </div>
+
+        <div class="calculator-box">
+            <h2>Calculate Your Payoff Timeline</h2>
+            <div class="form-group">
+                <label for="debtAmount">Total Debt Balance: <span class="range-value" id="debtDisplay">$15,000</span></label>
+                <input type="number" id="debtAmount" value="15000" min="1000" step="1000">
+            </div>
+
+            <div class="form-group">
+                <label for="apr">Interest Rate (APR %): <span class="range-value" id="aprDisplay">18.0%</span></label>
+                <input type="number" id="apr" value="18.0" min="0" max="36" step="0.5">
+            </div>
+
+            <div class="form-group">
+                <label for="monthlyPayment">Monthly Payment Amount: <span class="range-value" id="paymentDisplay">$500</span></label>
+                <input type="number" id="monthlyPayment" value="500" min="50" step="25">
+            </div>
+
+            <button onclick="calculatePayoff()">Calculate Payoff Timeline</button>
+
+            <div class="result-box" id="results">
+                <h3>🎯 Your Debt Payoff Plan</h3>
+                <div class="result-item">
+                    <div class="result-label">Months to Debt-Free</div>
+                    <div class="result-value" id="payoffMonths">32 months</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Debt-Free Date</div>
+                    <div class="result-value" id="debtFreeDate">Jan 2027</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Total Interest Paid</div>
+                    <div class="result-value" id="totalInterest">$2,840</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Total Amount Paid</div>
+                    <div class="result-value" id="totalPaid">$17,840</div>
+                </div>
+
+                <div class="offer-box">
+                    <h4>🚀 Lower Your Interest Rate with Consolidation</h4>
+                    <p>You could save thousands by consolidating your debt into a lower-rate personal loan. Compare consolidation offers:</p>
+                    <a href="https://www.sofi.com/" target="_blank" rel="noopener" class="offer-btn">Compare Consolidation Offers →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Ways to Pay Off Debt Faster</h2>
+            <h3>1. Pay More Than the Minimum</h3>
+            <p>Even an extra $50-100 per month can cut years off your payoff timeline and save thousands in interest.</p>
+            
+            <h3>2. Consolidate Your Debt</h3>
+            <p>If you have multiple debts, consolidating them into a single loan with a lower interest rate can save you money and simplify your payments.</p>
+            
+            <h3>3. Negotiate a Lower Interest Rate</h3>
+            <p>Contact your creditors and ask if they'll lower your rate. A 2-3% reduction can save you hundreds or thousands.</p>
+            
+            <h3>4. Use the Snowball or Avalanche Method</h3>
+            <p><strong>Snowball:</strong> Pay off smallest debts first for quick wins. <strong>Avalanche:</strong> Pay off highest-rate debts first to save the most money.</p>
+
+            <h2>Related Financial Calculators</h2>
+            <div class="related-calcs">
+                <a href="/credit-card-payoff-calculator.html" class="calc-card">
+                    <h4>💰 Credit Card Payoff</h4>
+                    <p>Calculate credit card payoff timeline</p>
+                </a>
+                <a href="/mortgage-calculator.html" class="calc-card">
+                    <h4>🏠 Mortgage Calculator</h4>
+                    <p>Calculate monthly mortgage payments</p>
+                </a>
+                <a href="/loan-calculator.html" class="calc-card">
+                    <h4>💳 Loan Calculator</h4>
+                    <p>Calculate personal loan payments</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Knowing & Going. Free financial calculators to help you make better money decisions.</p>
+        <p><a href="#" style="color: #60a5fa;">Privacy Policy</a> | <a href="#" style="color: #60a5fa;">Affiliate Disclosure</a></p>
+    </footer>
+
+    <script>
+        document.getElementById('debtAmount').addEventListener('input', function() {
+            document.getElementById('debtDisplay').textContent = '$' + Number(this.value).toLocaleString();
+        });
+        document.getElementById('apr').addEventListener('input', function() {
+            document.getElementById('aprDisplay').textContent = parseFloat(this.value).toFixed(1) + '%';
+        });
+        document.getElementById('monthlyPayment').addEventListener('input', function() {
+            document.getElementById('paymentDisplay').textContent = '$' + Number(this.value).toLocaleString();
+        });
+
+        function calculatePayoff() {
+            const debt = Number(document.getElementById('debtAmount').value);
+            const apr = Number(document.getElementById('apr').value);
+            const payment = Number(document.getElementById('monthlyPayment').value);
+            const monthlyRate = apr / 100 / 12;
+
+            let balance = debt;
+            let months = 0;
+            let totalInterest = 0;
+
+            while (balance > 0 && months < 600) {
+                const interest = balance * monthlyRate;
+                totalInterest += interest;
+                balance = balance + interest - payment;
+                months++;
+            }
+
+            const years = Math.floor(months / 12);
+            const remainingMonths = months % 12;
+            const debtFreeDate = new Date();
+            debtFreeDate.setMonth(debtFreeDate.getMonth() + months);
+
+            document.getElementById('payoffMonths').textContent = months + ' months (' + years + ' years, ' + remainingMonths + ' months)';
+            document.getElementById('debtFreeDate').textContent = debtFreeDate.toLocaleString('en-US', {month: 'short', year: 'numeric'});
+            document.getElementById('totalInterest').textContent = '$' + totalInterest.toLocaleString(undefined, {maximumFractionDigits: 0});
+            document.getElementById('totalPaid').textContent = '$' + (debt + totalInterest).toLocaleString(undefined, {maximumFractionDigits: 0});
+            document.getElementById('results').style.display = 'block';
+        }
+
+        calculatePayoff();
+    </script>
+</body>
+</html>

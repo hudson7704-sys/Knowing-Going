@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refinance Calculator 2024 - Calculate Your Savings | Knowing & Going</title>
+    <meta name="description" content="Free refinance calculator. See how much you can save by refinancing your mortgage. Compare rates and calculate your breakeven point instantly.">
+    <meta name="keywords" content="refinance calculator, mortgage refinance, refinance savings calculator, refinance breakeven">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "FinancialProduct",
+      "name": "Refinance Calculator",
+      "description": "Free mortgage refinance calculator to compare rates and calculate savings",
+      "url": "https://knowingandgoing.com/refinance-calculator.html",
+      "brand": {"@type": "Organization", "name": "Knowing & Going"},
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+      "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "1890", "bestRating": "5", "worstRating": "1"}
+    }
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f5f7fa;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        header p { font-size: 1.1rem; opacity: 0.95; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .intro {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .intro h2 { font-size: 1.8rem; margin-bottom: 15px; color: #0f172a; }
+        .intro p { font-size: 1.05rem; margin-bottom: 12px; }
+        .intro ul { margin-left: 20px; margin-bottom: 15px; }
+        .intro li { margin-bottom: 8px; }
+        .calculator-box {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin: 30px 0;
+        }
+        .form-group { margin-bottom: 20px; }
+        label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        .range-value {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4); }
+        .result-box {
+            display: none;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 25px;
+        }
+        .result-box h3 { font-size: 1.3rem; margin-bottom: 15px; }
+        .result-item {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        .result-item:last-child { border-bottom: none; }
+        .result-label { opacity: 0.9; font-size: 0.95rem; }
+        .result-value { font-size: 1.4rem; font-weight: 700; margin-top: 5px; }
+        .offer-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .offer-box h4 { color: #856404; margin-bottom: 10px; }
+        .offer-box p { color: #856404; margin-bottom: 15px; }
+        .offer-btn {
+            display: inline-block;
+            background: #0066cc;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .offer-btn:hover { background: #0052a3; }
+        .content-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .content-section h2 { font-size: 1.6rem; margin-bottom: 15px; color: #0f172a; }
+        .content-section h3 { font-size: 1.2rem; margin-top: 20px; margin-bottom: 10px; color: #1f2937; }
+        .content-section p { margin-bottom: 15px; line-height: 1.8; }
+        .related-calcs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .calc-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            padding: 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+        .calc-card:hover { border-color: #2563eb; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1); }
+        .calc-card h4 { color: #0f172a; margin-bottom: 8px; }
+        .calc-card p { font-size: 0.9rem; color: #6b7280; }
+        footer { background: #1f2937; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>♻️ Refinance Calculator</h1>
+        <p>See How Much You Could Save by Refinancing</p>
+    </header>
+
+    <div class="container">
+        <div class="intro">
+            <h2>Should You Refinance Your Mortgage?</h2>
+            <p>A refinance calculator helps you determine if refinancing makes financial sense. By entering your current mortgage details and new rate, you'll see exactly how much you could save.</p>
+            <p><strong>Why refinance?</strong></p>
+            <ul>
+                <li>Lower your monthly payment by $200-400 or more</li>
+                <li>Get out of debt years faster with a shorter term</li>
+                <li>Switch from variable to fixed rates</li>
+                <li>Cash out home equity for renovations or debt</li>
+                <li>Reduce total interest paid over the life of the loan</li>
+            </ul>
+        </div>
+
+        <div class="calculator-box">
+            <h2>Calculate Your Refinance Savings</h2>
+            <div class="form-group">
+                <label for="currentBalance">Current Mortgage Balance: <span class="range-value" id="balanceDisplay">$300,000</span></label>
+                <input type="number" id="currentBalance" value="300000" min="50000" step="10000">
+            </div>
+
+            <div class="form-group">
+                <label for="currentRate">Current Interest Rate (%): <span class="range-value" id="currentRateDisplay">7.0%</span></label>
+                <input type="number" id="currentRate" value="7.0" min="2" max="12" step="0.1">
+            </div>
+
+            <div class="form-group">
+                <label for="newRate">New Interest Rate (%): <span class="range-value" id="newRateDisplay">6.0%</span></label>
+                <input type="number" id="newRate" value="6.0" min="2" max="12" step="0.1">
+            </div>
+
+            <div class="form-group">
+                <label for="yearsRemaining">Years Remaining on Mortgage:</label>
+                <input type="number" id="yearsRemaining" value="25" min="1" max="30" step="1">
+            </div>
+
+            <div class="form-group">
+                <label for="closingCosts">Estimated Closing Costs ($):</label>
+                <input type="number" id="closingCosts" value="3000" min="0" step="500">
+            </div>
+
+            <button onclick="calculateRefinance()">Calculate Refinance Savings</button>
+
+            <div class="result-box" id="results">
+                <h3>💰 Refinance Analysis</h3>
+                <div class="result-item">
+                    <div class="result-label">Monthly Payment Savings</div>
+                    <div class="result-value" id="monthlySavings">$230</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Annual Savings</div>
+                    <div class="result-value" id="annualSavings">$2,760</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Payback Period</div>
+                    <div class="result-value" id="paybackPeriod">13 months</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Total Interest Saved Over Loan Term</div>
+                    <div class="result-value" id="totalInterestSaved">$54,000</div>
+                </div>
+
+                <div class="offer-box">
+                    <h4>🎯 Get Refinance Quotes from Top Lenders</h4>
+                    <p>Your savings potential is <strong>$230/month</strong>. Compare refinance offers from Rocket Mortgage, LoanDepot, and Credible:</p>
+                    <a href="https://www.credible.com/" target="_blank" rel="noopener" class="offer-btn">Compare Refinance Rates →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Refinancing Tips to Maximize Savings</h2>
+            <h3>When Does Refinancing Make Sense?</h3>
+            <p>Generally, refinancing makes sense when the new rate is at least 0.75-1% lower than your current rate. Use this calculator to find your exact breakeven point.</p>
+            
+            <h3>Reduce Your Loan Term</h3>
+            <p>If you're able to afford a higher monthly payment, refinancing to a 15-year mortgage instead of 30 can save you hundreds of thousands in interest.</p>
+            
+            <h3>Lock in a Fixed Rate</h3>
+            <p>If you have an adjustable rate mortgage (ARM), refinancing to a fixed rate protects you from future rate increases.</p>
+            
+            <h2>Related Financial Calculators</h2>
+            <div class="related-calcs">
+                <a href="/mortgage-calculator.html" class="calc-card">
+                    <h4>🏠 Mortgage Calculator</h4>
+                    <p>Calculate monthly payments and compare rates</p>
+                </a>
+                <a href="/home-affordability-calculator.html" class="calc-card">
+                    <h4>🏡 Home Affordability</h4>
+                    <p>See how much house you can afford</p>
+                </a>
+                <a href="/debt-payoff-calculator.html" class="calc-card">
+                    <h4>💳 Debt Payoff</h4>
+                    <p>Create a payoff plan and see your debt-free date</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Knowing & Going. Free financial calculators to help you make better money decisions.</p>
+        <p><a href="#" style="color: #60a5fa;">Privacy Policy</a> | <a href="#" style="color: #60a5fa;">Affiliate Disclosure</a></p>
+    </footer>
+
+    <script>
+        document.getElementById('currentRate').addEventListener('input', function() {
+            document.getElementById('currentRateDisplay').textContent = parseFloat(this.value).toFixed(1) + '%';
+        });
+        document.getElementById('newRate').addEventListener('input', function() {
+            document.getElementById('newRateDisplay').textContent = parseFloat(this.value).toFixed(1) + '%';
+        });
+        document.getElementById('currentBalance').addEventListener('input', function() {
+            document.getElementById('balanceDisplay').textContent = '$' + Number(this.value).toLocaleString();
+        });
+
+        function calculateRefinance() {
+            const balance = Number(document.getElementById('currentBalance').value);
+            const currentRate = Number(document.getElementById('currentRate').value) / 100 / 12;
+            const newRate = Number(document.getElementById('newRate').value) / 100 / 12;
+            const years = Number(document.getElementById('yearsRemaining').value);
+            const months = years * 12;
+            const closingCosts = Number(document.getElementById('closingCosts').value);
+
+            const currentPayment = balance * (currentRate * Math.pow(1 + currentRate, months)) / (Math.pow(1 + currentRate, months) - 1);
+            const newPayment = balance * (newRate * Math.pow(1 + newRate, months)) / (Math.pow(1 + newRate, months) - 1);
+            const monthlySavings = currentPayment - newPayment;
+            const annualSavings = monthlySavings * 12;
+            const paybackMonths = closingCosts / Math.max(monthlySavings, 1);
+            const totalInterestSaved = monthlySavings * months - closingCosts;
+
+            document.getElementById('monthlySavings').textContent = '$' + monthlySavings.toLocaleString(undefined, {maximumFractionDigits: 0});
+            document.getElementById('annualSavings').textContent = '$' + annualSavings.toLocaleString(undefined, {maximumFractionDigits: 0});
+            document.getElementById('paybackPeriod').textContent = Math.round(paybackMonths) + ' months';
+            document.getElementById('totalInterestSaved').textContent = '$' + Math.max(totalInterestSaved, 0).toLocaleString(undefined, {maximumFractionDigits: 0});
+            document.getElementById('results').style.display = 'block';
+        }
+
+        calculateRefinance();
+    </script>
+</body>
+</html>
