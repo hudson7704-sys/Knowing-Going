@@ -27,6 +27,14 @@ const T = [
   ['time','Time to Double Calculator','⏱️','Money','Estimate how long it will take to double your money.',[['p','Starting amount','number'],['r','Annual rate %','number']],v=>{const p=v.p,r=v.r/100;const t = Math.log(2)/Math.log(1+r);return `Years to double: <b>${F(t)}</b>`;}]
 ];
 
+const grid = document.querySelector('#grid');
+const modal = document.querySelector('#modal');
+const form = document.querySelector('#form');
+const result = document.querySelector('#result');
+const searchInput = document.querySelector('#search');
+const featured = document.querySelector('#featured');
+let currentCategory = '';
+
 const M = (x) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(x));
 const F = (n) => Number(n).toLocaleString('en-US', { maximumFractionDigits: 4 });
 
@@ -71,36 +79,42 @@ function FR(a, operation, b) {
     n *= -1;
     d *= -1;
   }
-  const divisor = Math.abs((function gcd(a, b) { while (b) { const t = a % b; a = b; b = t; } return a || 1; })(n, d));
+  const gcd = (a, b) => {
+    let aa = Math.abs(a);
+    let bb = Math.abs(b);
+    while (bb) {
+      const t = aa % bb;
+      aa = bb;
+      bb = t;
+    }
+    return aa || 1;
+  };
+  const divisor = gcd(n, d);
   const reducedN = n / divisor;
   const reducedD = d / divisor;
   return `<b>${reducedN}/${reducedD}</b> (${F(n / d)})`;
 }
 
 const featuredNames = ['loan', 'mortgage', 'discount', 'tax', 'age', 'miles'];
-let currentCategory = '';
 
 function getToolBySlug(slug) {
   return T.find((tool) => tool[0] === slug);
 }
 
 function renderFeatured() {
-  const featured = document.querySelector('#featured');
   if (!featured) return;
-  featured.innerHTML = featuredNames
-    .map((slug) => {
-      const tool = getToolBySlug(slug);
-      if (!tool) return '';
-      return `
-        <article class="tool-card featured-card" data-tool="${tool[0]}">
-          <div class="tool-icon">${tool[2]}</div>
-          <h3>${tool[1]}</h3>
-          <p>${tool[4]}</p>
-          <button type="button" class="tool-button">Use Tool</button>
-        </article>
-      `;
-    })
-    .join('');
+  featured.innerHTML = featuredNames.map((slug) => {
+    const tool = getToolBySlug(slug);
+    if (!tool) return '';
+    return `
+      <article class="tool-card featured-card" data-tool="${tool[0]}">
+        <div class="tool-icon">${tool[2]}</div>
+        <h3>${tool[1]}</h3>
+        <p>${tool[4]}</p>
+        <button type="button" class="tool-button">Use Tool</button>
+      </article>
+    `;
+  }).join('');
 
   featured.querySelectorAll('.tool-card').forEach((card) => {
     card.addEventListener('click', () => openTool(getToolBySlug(card.dataset.tool)));
@@ -108,10 +122,7 @@ function renderFeatured() {
 }
 
 function renderGrid(query = '', category = '') {
-  const grid = document.querySelector('#grid');
-  const noResults = document.querySelector('#noResults');
   if (!grid) return;
-
   const normalizedQuery = query.trim().toLowerCase();
   const filtered = T.filter((tool) => {
     const matchesQuery = !normalizedQuery || `${tool[1]} ${tool[3]} ${tool[4]}`.toLowerCase().includes(normalizedQuery);
@@ -119,19 +130,18 @@ function renderGrid(query = '', category = '') {
     return matchesQuery && matchesCategory;
   });
 
-  grid.innerHTML = filtered
-    .map((tool) => `
-      <article class="tool-card" data-tool="${tool[0]}">
-        <div class="tool-icon">${tool[2]}</div>
-        <div class="tool-topline">
-          <span class="tool-category">${tool[3]}</span>
-        </div>
-        <h3>${tool[1]}</h3>
-        <p>${tool[4]}</p>
-        <button type="button" class="tool-button">Open</button>
-      </article>
-    `)
-    .join('');
+  const noResults = document.querySelector('#noResults');
+  grid.innerHTML = filtered.map((tool) => `
+    <article class="tool-card" data-tool="${tool[0]}">
+      <div class="tool-icon">${tool[2]}</div>
+      <div class="tool-topline">
+        <span class="tool-category">${tool[3]}</span>
+      </div>
+      <h3>${tool[1]}</h3>
+      <p>${tool[4]}</p>
+      <button type="button" class="tool-button">Open</button>
+    </article>
+  `).join('');
 
   grid.querySelectorAll('.tool-card').forEach((card) => {
     card.addEventListener('click', () => openTool(getToolBySlug(card.dataset.tool)));
@@ -142,36 +152,35 @@ function renderGrid(query = '', category = '') {
 
 function openTool(tool) {
   if (!tool || !modal || !form || !result) return;
-  document.querySelector('#title').textContent = tool[1];
-  document.querySelector('#cat').textContent = tool[3];
+  const title = document.querySelector('#title');
+  const cat = document.querySelector('#cat');
+  if (title) title.textContent = tool[1];
+  if (cat) cat.textContent = tool[3];
   result.hidden = true;
   result.innerHTML = '';
 
   const fields = tool[5] || [];
-  form.innerHTML = fields
-    .map(([key, label, type]) => {
-      if (type && type.startsWith('select:')) {
-        const options = type.slice(7).split('|');
-        return `
-          <label class="field">
-            <span>${label}</span>
-            <select id="field-${key}">
-              ${options.map((option) => `<option value="${option}">${option}</option>`).join('')}
-            </select>
-          </label>
-        `;
-      }
-
-      const inputType = type === 'date' ? 'date' : type === 'text' ? 'text' : 'number';
-      const step = type === 'number' ? 'step="any"' : '';
+  form.innerHTML = fields.map(([key, label, type]) => {
+    if (type && type.startsWith('select:')) {
+      const options = type.slice(7).split('|');
       return `
         <label class="field">
           <span>${label}</span>
-          <input id="field-${key}" type="${inputType}" ${step}>
+          <select id="field-${key}">
+            ${options.map((option) => `<option value="${option}">${option}</option>`).join('')}
+          </select>
         </label>
       `;
-    })
-    .join('') + '<button type="submit" class="calc-button">Calculate</button>';
+    }
+    const inputType = type === 'date' ? 'date' : type === 'text' ? 'text' : 'number';
+    const step = type === 'number' ? 'step="any"' : '';
+    return `
+      <label class="field">
+        <span>${label}</span>
+        <input id="field-${key}" type="${inputType}" ${step}>
+      </label>
+    `;
+  }).join('') + '<button type="submit" class="calc-button">Calculate</button>';
 
   form.onsubmit = (event) => {
     event.preventDefault();
@@ -183,7 +192,6 @@ function openTool(tool) {
         result.innerHTML = 'Calculator setup error.';
         return;
       }
-
       if (type && type.startsWith('select:')) {
         values[key] = input.value;
       } else if (input.value === '') {
@@ -220,16 +228,16 @@ function filterByCategory(category) {
   currentCategory = category || '';
   const navLinks = document.querySelectorAll('.nav-link');
   navLinks.forEach((link) => {
-    const active = link.dataset.filter === currentCategory;
-    link.classList.toggle('active', active);
+    const isActive = link.dataset.filter === currentCategory;
+    link.classList.toggle('active', isActive);
   });
-  renderGrid(document.querySelector('#search')?.value || '', currentCategory);
+  const keyword = searchInput ? searchInput.value : '';
+  renderGrid(keyword, currentCategory);
 }
 
 function searchByKeyword(keyword) {
-  const search = document.querySelector('#search');
-  if (search) {
-    search.value = keyword;
+  if (searchInput) {
+    searchInput.value = keyword;
     renderGrid(keyword, currentCategory);
   }
 }
@@ -250,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeButton = document.querySelector('#close');
   if (closeButton) {
     closeButton.addEventListener('click', () => {
-      modal.hidden = true;
+      if (modal) modal.hidden = true;
     });
   }
 
